@@ -1,24 +1,29 @@
-version: '28.3.3'
-
 services:
   postgres:
-    image: bitnami/postgresql:latest
-    ports:
-      - '5432:5432'
+    image: postgres:17
+    container_name: postgres17
     environment:
-      - POSTGRES_USER=docker
-      - POSTGRES_PASSWORD=123
-      - POSTGRES_DB=polls
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: '123'
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5432:5432"
     volumes:
-      - polls_pg_data:/bitnami/postgresql
-
-  redis:
-    image: bitnami/redis:latest
-    environment:
-      - ALLOW_EMPTY_PASSWORD=yes
-    ports:
-      - '6379:6379'
+      - postgres_data:/var/lib/postgresql/data
 
 volumes:
-  polls_pg_data:
-  polls_redis_data:
+  postgres_data:
+
+
+  # redis:
+  #   image: bitnami/redis:7.2.4  # Use uma tag específica
+  #   environment:
+  #     - ALLOW_EMPTY_PASSWORD=yes
+  #   ports:
+  #     - '6379:6379'
+  #   volumes:
+  #     - polls_redis_data:/bitnami/redis  # Adicionado o volume
+
+# volumes:
+#   polls_pg_data:
+  # polls_redis_data:
