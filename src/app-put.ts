@@ -1,20 +1,19 @@
 
-import express from "express";
+import { Router, Request, Response } from "express";
 import pool from "./config/dbConnect.js";
-import { object, string, InferType } from "yup";
+// import { object, string, InferType } from "yup";
 
-const app = express();
-app.use(express.json()); //middleware - Acesso as req e res e fazer algumas ações
+const router = Router();
 
-let agendaAlterSchema = object({
-    scope: string(),
-    time: string(),
-    date: string(),
-    duration: string(),
-    location: string()
-});
+// let agendaAlterSchema = object({
+//     scope: string(),
+//     time: string(),
+//     date: string(),
+//     duration: string(),
+//     location: string()
+// });
 
-app.put("/agendas/:id", async (req, res) =>{
+router.put("/agendas/:id", async (req:Request, res:Response) =>{
     try {
         const {id} = req.params;
         const campos = [];
@@ -23,7 +22,7 @@ app.put("/agendas/:id", async (req, res) =>{
 
         if (req.body.scope) {
             campos.push(`scope = $${i++}`);
-            valores.push(res.body.scope);
+            valores.push(req.body.scope);
         }
         if (req.body.time) {
             campos.push(`time = $${i++}`);
@@ -58,4 +57,4 @@ app.put("/agendas/:id", async (req, res) =>{
     }
 });
 
-export default app;
+export default router;

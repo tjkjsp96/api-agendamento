@@ -1,11 +1,10 @@
 
-import express from "express";
+import { Router, Request, Response } from "express";
 import pool from "./config/dbConnect.js";
 
-const app = express();
-app.use(express.json()); //middleware - Acesso as req e res e fazer algumas ações
+const router = Router();
 
-app.delete("/agendas/:id", async (req, res) =>{
+router.delete("/agendas/:id", async (req:Request, res:Response) =>{
     try{
         const {id} = req.params;
 
@@ -22,4 +21,4 @@ app.delete("/agendas/:id", async (req, res) =>{
         }
 });
 
-export default app;
+export default router;

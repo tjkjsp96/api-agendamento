@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "noImplicitAny": true,
+    "outDir": "./build",
+    "noEmitOnError": true
+    },
+  "include": ["./src/**/*","./server.ts"]
+}

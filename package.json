@@ -5,8 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsc-watch --onSuccess \"node build/server.js\""
   },
   "keywords": [],
   "author": "",
@@ -16,5 +16,10 @@
     "nodemon": "^3.1.10",
     "pg": "^8.16.3",
     "yup": "^1.7.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/pg": "^8.15.5",
+    "tsc-watch": "^7.2.0"
   }
 }

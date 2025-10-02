@@ -1,11 +1,10 @@
 
-import express from "express";
+import { Router, Request, Response } from "express";
 import pool from "./config/dbConnect.js";
 
-const app = express();
-app.use(express.json());
+const router = Router();
 
-app.get("/agendas", async (req, res) => {
+router.get("/agendas", async (_, res:Response) => {
     try{
         const result = await pool.query('SELECT * FROM agendas');
 
@@ -16,7 +15,7 @@ app.get("/agendas", async (req, res) => {
         }
 });
 
-app.get("/agendas/:id", async (req, res) => {
+router.get("/agendas/:id", async (req:Request, res:Response) => {
     try{
         const {id} = req.params;
 
@@ -33,4 +32,4 @@ app.get("/agendas/:id", async (req, res) => {
         }
 });
 
-export default app;
+export default router;
