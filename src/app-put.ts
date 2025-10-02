@@ -1,17 +1,17 @@
 
 import { Router, Request, Response } from "express";
 import pool from "./config/dbConnect.js";
-// import { object, string, InferType } from "yup";
+import { object, string, InferType } from "yup";
 
 const router = Router();
 
-// let agendaAlterSchema = object({
-//     scope: string(),
-//     time: string(),
-//     date: string(),
-//     duration: string(),
-//     location: string()
-// });
+let agendaAlterSchema = object({
+    scope: string(),
+    time: string(),
+    date: string(),
+    duration: string(),
+    location: string()
+});
 
 router.put("/agendas/:id", async (req:Request, res:Response) =>{
     try {

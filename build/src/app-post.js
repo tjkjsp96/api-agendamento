@@ -36,33 +36,44 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 import { Router } from "express";
 import pool from "./config/dbConnect.js";
-// import { object, string, InferType } from "yup";
+import { object, string } from "yup";
 var router = Router();
-// let agendaCreateSchema = object({
-//     scope: string().required("O campo scope é obrigatório."),
-//     time: string().required("O campo time é obrigatório."),
-//     date: string().required("O campo date é obrigatório."),
-//     duration: string().required("O campo duration é obrigatório."),
-//     location: string().required("O campo location é obrigatório.")
-// });
+var agendaCreateSchema = object({
+    scope: string().required("O campo scope é obrigatório."),
+    time: string().required("O campo time é obrigatório."),
+    date: string().required("O campo date é obrigatório."),
+    duration: string().required("O campo duration é obrigatório."),
+    location: string().required("O campo location é obrigatório.")
+});
 router.post("/agendas", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var data, result, err_1;
+    var validatedData, result, err_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                _a.trys.push([0, 2, , 3]);
-                data = req.body;
-                return [4 /*yield*/, pool.query('INSERT INTO agendas (scope,time,date,duration,location) VALUES ($1, $2, $3, $4, $5) RETURNING *', [data.scope, data.time, data.date, data.duration, data.location])];
+                _a.trys.push([0, 3, , 4]);
+                return [4 /*yield*/, agendaCreateSchema.validate(req.body, { abortEarly: false })];
             case 1:
+                validatedData = _a.sent();
+                return [4 /*yield*/, pool.query('INSERT INTO agendas (scope,time,date,duration,location) VALUES ($1, $2, $3, $4, $5) RETURNING *', [
+                        validatedData.scope,
+                        validatedData.time,
+                        validatedData.date,
+                        validatedData.duration,
+                        validatedData.location
+                    ])];
+            case 2:
                 result = _a.sent();
                 res.status(201).json(result.rows[0]);
-                return [3 /*break*/, 3];
-            case 2:
+                return [3 /*break*/, 4];
+            case 3:
                 err_1 = _a.sent();
+                if (err_1.name === "ValidationError") {
+                    return [2 /*return*/, res.status(400).json({ errors: err_1.errors })];
+                }
                 console.error(err_1);
                 res.status(500).json({ error: "Erro ao inserir agenda." });
-                return [3 /*break*/, 3];
-            case 3: return [2 /*return*/];
+                return [3 /*break*/, 4];
+            case 4: return [2 /*return*/];
         }
     });
 }); });

@@ -36,15 +36,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 import { Router } from "express";
 import pool from "./config/dbConnect.js";
-// import { object, string, InferType } from "yup";
+import { object, string } from "yup";
 var router = Router();
-// let agendaAlterSchema = object({
-//     scope: string(),
-//     time: string(),
-//     date: string(),
-//     duration: string(),
-//     location: string()
-// });
+var agendaAlterSchema = object({
+    scope: string(),
+    time: string(),
+    date: string(),
+    duration: string(),
+    location: string()
+});
 router.put("/agendas/:id", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var id, campos, valores, i, query, result, err_1;
     return __generator(this, function (_a) {
