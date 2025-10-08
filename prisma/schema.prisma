@@ -1,0 +1,17 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model agendas {
+  id       Int    @id @default(autoincrement())
+  scope    String
+  time     String
+  date     String
+  duration String
+  location String
+}
