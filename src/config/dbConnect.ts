@@ -9,16 +9,6 @@ const pool = new Pool({
   database: 'mydatabase'
 });
 
-// pool.query('SELECT NOW()', (err, res) => {
-//   if (err) {
-//     console.error('Erro ao conectar ao PostgreSQL:', err.message);
-//   } else {
-//     console.log('✅ Conexão bem-sucedida:', res.rows[0].now);
-//   }
-//   pool.end();
-// });
-
-
 async function createTable() {
   const query = `
     CREATE TABLE IF NOT EXISTS agendas (

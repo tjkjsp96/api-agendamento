@@ -2,8 +2,10 @@
   "compilerOptions": {
     "module": "ESNext",
     "moduleResolution": "Node",
+    "target": "ES2017",
     "esModuleInterop": true,
     "noImplicitAny": true,
+    "skipLibCheck": true,
     "outDir": "./build",
     "noEmitOnError": true
     },
