@@ -18,17 +18,17 @@ router.put("/agendas/:id", async (req:Request, res:Response) =>{
         const {id} = req.params;
         const data:any = {}
 
-    if (req.body.scope) data.scope = req.body.scope;
-    if (req.body.time) data.time = req.body.time;
-    if (req.body.date) data.date = req.body.date;
-    if (req.body.duration) data.duration = req.body.duration;
-    if (req.body.location) data.location = req.body.location;
+        if (req.body.scope) data.scope = req.body.scope;
+        if (req.body.time) data.scope = req.body.time;
+        if (req.body.date) data.scope = req.body.date;
+        if (req.body.duration) data.scope = req.body.duration;
+        if (req.body.location) data.scope = req.body.location;
 
         if (Object.keys(data).length === 0) {
             return res.status(400).json({ error: "Nenhum campo para atualizar."});
         }
 
-        const update = await prisma.agendas.update({
+        const update = await prisma.agenda.update({
             where: { id: Number(id) },
             data
         });

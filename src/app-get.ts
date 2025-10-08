@@ -7,8 +7,8 @@ const router = Router();
 
 router.get("/agendas", async (_, res:Response) => {
     try{
-    // const result = await pool.query('SELECT * FROM agendas');
-    const result = await prisma.agendas.findMany();
+        // const result = await pool.query('SELECT * FROM agendas');
+        const result = await prisma.agenda.findMany();
         res.status(200).json(result);
 
     } catch (err) {
@@ -21,8 +21,8 @@ router.get("/agendas/:id", async (req:Request, res:Response) => {
     try{
         const {id} = req.params;
 
-    // const result = await pool.query('SELECT * FROM agendas WHERE id = $1', [id]);
-    const agenda = await prisma.agendas.findUnique({ where: { id: Number(id) } });
+        // const result = await pool.query('SELECT * FROM agendas WHERE id = $1', [id]);
+        const agenda = await prisma.agenda.findUnique({ where: { id: Number(id) } });
 
         if (!agenda) {
             return res.status(404).json({error: "Agenda não encontrada."});

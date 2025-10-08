@@ -20,7 +20,7 @@ router.post("/agendas", async (req:Request, res:Response) => {
         const validatedData = await agendaCreateSchema.validate(req.body, { abortEarly: false });
 
 
-    const created = await prisma.agendas.create({
+        const created = await prisma.agenda.create({
             data: {
                  scope: validatedData.scope
                 ,time: validatedData.time
