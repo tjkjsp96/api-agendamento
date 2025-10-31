@@ -2,11 +2,11 @@ import pkg from 'pg';
 const { Pool } = pkg;
 
 const pool = new Pool({
-  host: 'localhost',    // ou 'postgres' se o Node.js também estiver em container
+  host: 'localhost', // ou 'postgres' se o Node.js também estiver em container
   port: 5432,
   user: 'myuser',
-  password: '123',      // <-- senha atualizada
-  database: 'mydatabase'
+  password: '123', // <-- senha atualizada
+  database: 'mydatabase',
 });
 
 async function createTable() {
