@@ -1,7 +1,7 @@
-export interface AgendaData{
-    scope: string;
-    time: string;
-    date: string;
-    duration: string;
-    location: string;
+export interface AgendaData {
+	scope: string;
+	time: string;
+	date: Date;
+	duration: number;
+	location: string;
 }
